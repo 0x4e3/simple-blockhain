@@ -32,6 +32,9 @@ class Blockchain(object):
 
         Keyword Arguments:
             previous_hash {str} -- Previous block's hash (default: {None}).
+
+        Returns:
+            dict -- The Block.
         """
         block = {
             'index': len(self.chain) + 1,
@@ -157,6 +160,14 @@ class Blockchain(object):
         return True
 
     def resolve_conflicts(self):
+        """This is our Consensus Algorithm.
+
+        It resolves conflicts by replacing our chain
+        with the longest one in the network.
+
+        Returns:
+            bool -- True if our chain was replaced, False if not.
+        """
         neighours = self.nodes
         new_chain = None
 
